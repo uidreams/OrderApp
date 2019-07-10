@@ -10,16 +10,24 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </head>
 
 <body>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Beverage Order </a>
+            </div>
+        </div>
+        </nav>
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <h4>Order</h4>
+                <h4>Beverage Menu</h4>
                 <div class="form-group">
                     <label for="username" >Enter your Name</label>
                     <input type="text" id="username" class="form-control" value="cust">
@@ -27,30 +35,30 @@
                 <div class="form-group">
                     <label for="beveragesList">Select Item from the list</label>
                     <select name="beveragesList" id="beverageList" class="form-control">
-                        <option value="">Sparkling Cranberry Punch </option>
+                        <!-- <option value="">Sparkling Cranberry Punch </option>
                         <option value="">ced Chocolate Delight</option>
                         <option value="">Raspberry Fizz </option>
                         <option value="">Virgin Frozen Margarita</option>
-                        <option value="">Summer Punch</option>
+                        <option value="">Summer Punch</option> -->
                     </select>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-success" id="orderSubmit">Submit</button>
+                    <button class="btn btn-default" id="orderSubmit">Submit</button>
                 </div>
             </div>
             <div class="col-md-9">
-                <h4>Order Status</h4>
+                <h4>Beverage Queue</h4>
                 <div class="row">
                     <div class="col-md-4">
-                        <p class="strong">In the Queue </p>
+                        <p class="strong">IN THE QUEUE <span id="queueCount"></span></p>
                         <div id="queue"></div>
                     </div>
                     <div class="col-md-4">
-                        <p class="strong">Being Mixed</p>
+                        <p class="strong">BEING MIXED <span id="processingCount"></span></p>
                         <div id="processing"></div>
                     </div>
                     <div class="col-md-4">
-                        <p class="strong">Ready to Collect </p>
+                        <p class="strong">READY TO COLLECT <span id="readyCount"></span></p>
                         <div id="ready"></div>
                     </div>
                 </div>
