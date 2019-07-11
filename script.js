@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    
+$(document).ready(function () {
+    // load Beverages in the dropdown thorugh external source
     $.ajax({
         type: 'GET',
         url: 'https://api.myjson.com/bins/15ha9v',
@@ -9,42 +9,42 @@ $(document).ready(function() {
         timeout: (20000),
         cache: false,
         crossOrigin: true,
-        success: function(data) {
-            
-            $('#beverageList').empty().append($('<option>', {
-                value: 'NONE',
-                text : 'Please Select'
-            }));
-            $.each(data, function (val) {
-                $('#beverageList').append($('<option>', {
-                    value: val.Description,
-                    text: val.Description,
-                }));
+        success: function (data) {
+            $.each(data, function (i, item) {
+                $.each(item.Beverages, function (i, result) {
+                    $('#beverageList').append($('<option>', {
+                        value: result.Name,
+                        text: result.Name
+                    }));
+                });
             });
         },
-        error: function() {
+        error: function () {
             alert('Beverage list not loaded.')
         }
     })
-    // 2. based on user(admin / user) profile selected, give right to change status
-
-    $('#orderSubmit').on('click', function() {
+    // on submit order
+    $('#orderSubmit').on('click', function () {
         var username = $('#username').val();
         var beverage = $('#beverageList :selected').text();
         var orderDetails = '<ul id="orderInfo"><li>' + username + '</li><li>' + beverage + '</li> </ul>';
-        $('#queue').append(orderDetails);
+        if(username.length > 1) {
+            $('#queue').append(orderDetails);
+            $('#username').val('');
+        } else {
+            alert('Fields should n\'t be empty');
+        }
     });
-    // on clicking 
-    $('#queue').on('click', 'ul', function() {
+    // order placed and in queue
+    $('#queue').on('click', 'ul', function () {
         var queueOrder = $(this).clone();
         $(this).remove();
         queueOrder.appendTo($('#processing'));
     });
-    $('#processing').on('click', 'ul', function() {
+    // order processed and ready to collect
+    $('#processing').on('click', 'ul', function () {
         var processingOrder = $(this).clone();
         $(this).remove();
         processingOrder.appendTo($('#ready'));
     });
-
-
 })
