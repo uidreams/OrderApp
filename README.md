@@ -1,1 +1,1 @@
-# makeOrderApp in jquery
+# makeOrderin jquery
